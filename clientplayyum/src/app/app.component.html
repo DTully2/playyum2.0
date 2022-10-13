@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span>PlayYum - {{ title }}</span>
+  <span style="flex: 1 1 auto"></span>
+  <button mat-button [matMenuTriggerFor]="appMenu" align="end">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu #appMenu="matMenu">
+  <a mat-menu-item [routerLink]="['home']" (click)="setTitle('home')">home</a>
+  <a mat-menu-item [routerLink]="['members']" (click)="setTitle('members')">members</a>
+  
+</mat-menu>
+<router-outlet></router-outlet>
