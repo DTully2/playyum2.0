@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BASEURL } from '../constants';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Member } from './member';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,6 +24,15 @@ export class MemberService {
       .get(this.resourceURL)
       .pipe(retry(1), catchError(this.handleError));
   } // get
+  /**
+    * Update an employee on the server using http put, server returns
+    * updated employee, then return it as Observable to caller
+    */
+  update(member: Member): Observable<Member> {
+    return this.http
+      .put<Member>(`${this.resourceURL}`, member)
+      .pipe(retry(1), catchError(this.handleError));
+  } // update
   // Error handling
   handleError(error: any) {
     let errorMessage = '';
@@ -34,4 +44,21 @@ export class MemberService {
     window.alert(errorMessage); // probably should console.log when going into production
     return throwError(() => errorMessage);
   }
+  //   /**
+  //    * add an employee on the server via POST, return Observable
+  //    */
+  add(member: Member): Observable<Member> {
+    member.id = 0;
+    return this.http
+      .post<Member>(this.resourceURL, member)
+      .pipe(retry(1), catchError(this.handleError));
+  } // add
+  //   /**
+  //  * delete an employee on the server, return Observable
+  //  */
+  delete(id: number): Observable<number> {
+    return this.http
+      .delete<number>(`${this.resourceURL}/${id}`)
+      .pipe(retry(1), catchError(this.handleError));
+  } // delete
 } // Member service

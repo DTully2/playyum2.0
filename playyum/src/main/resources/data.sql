@@ -1,2 +1,2 @@
-INSERT INTO Member (Username,Email)
-VALUES ('Bigshot','bs@abc.com');
+INSERT INTO Member (Username,Email,Password)
+VALUES ('Bigshot','bs@abc.com','1234');
