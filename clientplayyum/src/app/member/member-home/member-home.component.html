@@ -8,5 +8,9 @@
     <mat-list flex>
       <app-member-list [members]="members"> </app-member-list>
     </mat-list>
+    <app-memberlogin [selectedEmployee]="member"   
+    (saved)="save($event)"
+ ></app-memberlogin>
+
   </mat-card-content>
 </mat-card>
