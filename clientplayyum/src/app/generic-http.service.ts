@@ -3,30 +3,40 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { BASEURL } from '@app/constants';
+import { Member } from './member/member';
 @Injectable({
   providedIn: 'root',
 })
 export class GenericHttpService<T> {
   // can't inject primitives, so use the @Inject decorator on url
-  constructor(
-    private httpClient: HttpClient,
-    @Inject(String) private entity: string
-  ) {} // constructor
+  constructor(    private httpClient: HttpClient,    @Inject(String) private entity: string  ) {} // constructor
   public add(item: T): Observable<T> {
     return this.httpClient
       .post<T>(`${BASEURL}${this.entity}`, item)
       .pipe(retry(2), catchError(this.handleError));
   } // add
+
   public update(item: T): Observable<T> {
     return this.httpClient
       .put<T>(`${BASEURL}${this.entity}`, item)
       .pipe(retry(2), catchError(this.handleError));
   } // update
+
   public get(): Observable<T[]> {
     return this.httpClient
       .get<T[]>(`${BASEURL}${this.entity}`)
       .pipe(retry(2), catchError(this.handleError));
   } // getAll
+
+  //confirm username and password match
+  public confirmUsernameAndPassword(member: Member ): Observable<T> {
+    console.log('confirmUsernameAndPassword');
+    return this.httpClient
+      .get<T>(`${BASEURL}${this.entity}?username=${member.username}&password=${member.password}`)
+      .pipe(retry(2), catchError(this.handleError));
+  } // confirmUsernameAndPassword
+
+
   public delete(id: number): Observable<number> {
     return this.httpClient
       .delete<number>(`${BASEURL}${this.entity}/${id}`)

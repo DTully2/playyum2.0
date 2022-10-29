@@ -12,9 +12,20 @@ public class MemberController {
     private MemberRepository memberRepository;
 
     @GetMapping("/api/members")
-    public ResponseEntity<Iterable<Member>> findAll() {
+    @ResponseBody  
+    public ResponseEntity<Iterable<Member>> findAll(@RequestParam(required = false) String username, @RequestParam(required = false)String password) {
+       if(username == null && password == null) {
+         
         Iterable<Member> members = memberRepository.findAll();
-        return new ResponseEntity<Iterable<Member>>(members, HttpStatus.OK);
+        return new ResponseEntity<Iterable<Member>>(members, HttpStatus.OK);}
+        else{
+           
+            Member member = (Member) memberRepository.findByUsernameAndPassword(username, password);
+            System.out.println(
+                "memberid"+member.getId()
+            ); 
+            return new ResponseEntity<Iterable<Member>>(HttpStatus.OK);
+        }
     }
 
     @PutMapping("/api/members")
@@ -22,6 +33,15 @@ public class MemberController {
         Member updatedMembers = memberRepository.save(member);
         return new ResponseEntity<Member>(updatedMembers, HttpStatus.OK);
     }
+
+    // @PostMapping("/api/members/login")
+    // public ResponseEntity<Member> loginUser(@RequestBody Member member) {
+    //     Member newMember = memberRepository.findByUserId(member.getId());
+    //     if(member.getPassword().equals(newMember.getPassword())){
+    //         return new ResponseEntity<Member>(newMember, HttpStatus.OK);
+    //     }
+    // return (ResponseEntity<Member>) ResponseEntity.internalServerError();
+    // }
 
     @PostMapping("/api/members")
     public ResponseEntity<Member> addOne(@RequestBody Member member) {

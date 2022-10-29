@@ -5,12 +5,12 @@
         <span class="mat-headline">{{ msg }}</span>
       </mat-card-title>
     </mat-card-header>
-    <mat-list flex>
+    <!-- <mat-list flex>
       <app-member-list [members]="members"> </app-member-list>
-    </mat-list>
+    </mat-list> -->
     <app-memberlogin [selectedEmployee]="member"   
     (saved)="save($event)"
- ></app-memberlogin>
-
+    ></app-memberlogin>
+     <app-loginpage (check)="check($event)"></app-loginpage>
   </mat-card-content>
 </mat-card>
