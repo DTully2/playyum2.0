@@ -10,7 +10,8 @@ export class MemberHomeComponent implements OnInit {
   msg: string;
   hideEditForm: boolean;
   member: Member;
-
+  loginbtn = document.getElementById('loginForm');
+  regbtn = document.getElementById('.register');
   constructor(public memberService: MemberService) {
     this.member = {
       id: 0,
@@ -19,7 +20,7 @@ export class MemberHomeComponent implements OnInit {
     };
     this.members = [];
     this.msg = '';
-    this.hideEditForm = true;
+    this.hideEditForm = false;
   } // constructor
   ngOnInit(): void {
     this.msg = 'loading members from server...';
@@ -40,17 +41,17 @@ export class MemberHomeComponent implements OnInit {
   save(vendor: Member): void {
     vendor.id ? this.update(vendor) : this.add(vendor);
   } // save
-  
+
   check(vendor: Member): void {
     console.log(vendor);
     this.memberService.confirmUsernameAndPassword(vendor).subscribe({
-
       // Create observer object
       next: (emp: Member) => (this.msg = `Members ${emp?.username} checked!`),
       error: (err: Error) => (this.msg = `Not valid failed! - ${err.message}`),
       complete: () => (this.hideEditForm = !this.hideEditForm),
     });
   } // check
+
   add(vendor: Member): void {
     vendor.id = 0;
     this.memberService.add(vendor).subscribe({
@@ -79,4 +80,12 @@ export class MemberHomeComponent implements OnInit {
     };
     this.hideEditForm = !this.hideEditForm;
   } // newVendor
+
+  showLoginForm(): void {
+    this.hideEditForm = true;
+  }
+
+  showRegisterForm(): void {
+    this.hideEditForm = false;
+  }
 } // MemberHomeComponent
