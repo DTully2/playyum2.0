@@ -10,10 +10,20 @@
   margin-right: 2vw !important;
 }
 
-mat-list-item:nth-child(odd){
-  background-color:white;
+mat-list-item {
+  &:nth-child(odd){
+    background-color:white;
   }
-  mat-list-item:nth-child(even) {
-  background-color:#eeeeee;
+  &:nth-child(even) {
+    background-color:#eeeeee;
   }
+
+}
+
+// mat-list-item:nth-child(odd){
+//   background-color:white;
+//   }
+//   mat-list-item:nth-child(even) {
+//   background-color:#eeeeee;
+//   }
   

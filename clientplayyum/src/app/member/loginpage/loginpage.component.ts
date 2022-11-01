@@ -48,7 +48,7 @@ memberLoginForm: FormGroup;
       
     this.member.password = this.memberLoginForm.value.password;
     this.member.username = this.memberLoginForm.value.userName;
-    console.log(this.member); 
+    // console.log(this.member); 
      this.check.emit(this.member);
   }
 }

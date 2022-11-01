@@ -6,12 +6,13 @@ import { MatComponentsModule } from '../mat-components/mat-components.module';
 import { MemberloginComponent } from './memberlogin/memberlogin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 
 @NgModule({
   declarations: [
     MemberListComponent,   
-    MemberHomeComponent, MemberloginComponent, LoginpageComponent
+    MemberHomeComponent, MemberloginComponent, LoginpageComponent, LandingpageComponent
   ],
   imports: [
     CommonModule,

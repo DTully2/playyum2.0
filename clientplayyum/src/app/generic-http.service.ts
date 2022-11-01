@@ -30,9 +30,9 @@ export class GenericHttpService<T> {
 
   //confirm username and password match
   public confirmUsernameAndPassword(member: Member ): Observable<T> {
-    console.log('confirmUsernameAndPassword');
+    console.log('confirmUsernameAndPassword/ '  + member.username + ' ' + member.password);
     return this.httpClient
-      .get<T>(`${BASEURL}${this.entity}?username=${member.username}&password=${member.password}`)
+      .get<T>(`${BASEURL}${this.entity}?username=${member.username}&password=${member.password}`) 
       .pipe(retry(2), catchError(this.handleError));
   } // confirmUsernameAndPassword
 

@@ -23,17 +23,8 @@ export class MemberHomeComponent implements OnInit {
     this.hideEditForm = false;
   } // constructor
   ngOnInit(): void {
-    this.msg = 'loading members from server...';
-    // this.memberService.get().subscribe({
-    //   // Observer object, complete method intrinscally unsubscribes
-    //   next: (payload: any) => {
-    //     this.members = payload._embedded.members;
-    //     this.msg = 'members loaded!!';
-    //   },
-    //   error: (err: Error) => (this.msg = `Get failed! - ${err.message}`),
+    this.msg = 'Welcome Please choose an option';
 
-    //   complete: () => {},
-    // }); // subscribe
   } // ngOnInit
   /**
    * save - determine whether we're doing and add or an update
@@ -46,8 +37,8 @@ export class MemberHomeComponent implements OnInit {
     console.log(vendor);
     this.memberService.confirmUsernameAndPassword(vendor).subscribe({
       // Create observer object
-      next: (emp: Member) => (this.msg = `Members ${emp?.username} checked!`),
-      error: (err: Error) => (this.msg = `Not valid failed! - ${err.message}`),
+      next: (emp: Member) => (this.msg = `Members ${emp?.username} Signed in!`, window.location.href='/landingpage'),
+      error: (err: Error) => (this.msg = `Not valid login Please register or Try again!`),
       complete: () => (this.hideEditForm = !this.hideEditForm),
     });
   } // check
