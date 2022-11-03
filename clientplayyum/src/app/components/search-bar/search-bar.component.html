@@ -1,0 +1,7 @@
+<div class="search-container">
+    <form class="search-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <span class="logo" routerLink="/" >PlayYum   <img class="log" src="assets/Images/playum.png" alt="logo" width="25" height="25" /></span>    
+    <input name="text" class="search-input" placeholder="Search for Games" ngModel/>
+    <button class="search-button">Search</button>    
+    </form>    
+</div>

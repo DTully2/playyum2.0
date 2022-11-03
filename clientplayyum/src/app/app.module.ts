@@ -16,9 +16,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptors';
 import { HttpErrorsInterceptor } from './interceptors/http-error.interceptors';
-
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { DetailsComponent } from './components/details/details.component';
+import { GaugeModule } from 'angular-gauge';
+import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HomepageComponent],
+  declarations: [AppComponent, HomeComponent, HomepageComponent, SearchBarComponent, DetailsComponent, GameTabsComponent],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +35,8 @@ import { HttpErrorsInterceptor } from './interceptors/http-error.interceptors';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    GaugeModule.forRoot(),
+    MatTabsModule,
   ],
   providers: [
     {
