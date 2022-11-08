@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class LandingpageComponent implements OnInit {
 
   localV = localStorage.getItem('login')?localStorage.getItem('login'):" ";
-
   constructor() { }
 
   ngOnInit(): void {

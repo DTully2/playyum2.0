@@ -7,12 +7,13 @@ import { MemberloginComponent } from './memberlogin/memberlogin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
+import { MemberProfileComponent } from './member-profile/member-profile.component';
 
 
 @NgModule({
   declarations: [
     MemberListComponent,   
-    MemberHomeComponent, MemberloginComponent, LoginpageComponent, LandingpageComponent
+    MemberHomeComponent, MemberloginComponent, LoginpageComponent, LandingpageComponent, MemberProfileComponent
   ],
   imports: [
     CommonModule,

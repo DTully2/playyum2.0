@@ -51,6 +51,7 @@ memberLoginForm: FormGroup;
     if(this.member.username !== null)
     {
       localStorage.setItem('login', this.member!.username!);
+      localStorage.setItem('userInfo', JSON.stringify( this.member));
     }
     // console.log(this.member); 
      this.check.emit(this.member);
