@@ -1,0 +1,184 @@
+<img [src]="getImage(0)" style="width:100px; height:100px;" (click)="setKeep(0)"/> 
+<img [src]="getImage(1)" style="width:100px; height:100px;" (click)="setKeep(1)"/> 
+<img [src]="getImage(2)" style="width:100px; height:100px;" (click)="setKeep(2)"/> 
+<img [src]="getImage(3)" style="width:100px; height:100px;" (click)="setKeep(3)"/> 
+<img [src]="getImage(4)" style="width:100px; height:100px;" (click)="setKeep(4)"/> 
+
+<button id="btn_roll" (click)="bpressRollDice()">Roll those dice!</button>
+
+<table>
+    <tr>
+        <th>
+            Roll
+        </th>
+        <th>
+            Scoring
+        </th>
+        <th>
+            Score
+        </th>
+        <th>
+               Roll
+        </th>
+        <th>
+            Scoring  
+        </th>
+        <th>
+            Score
+        </th>
+    </tr>
+    <tr>
+        <td>
+            1's
+        </td>
+        <td>
+            5
+        </td>
+        <td *ngIf="score.numbers[0] !== -1; else elseBlock">{{score.numbers[0]}}</td>
+        <ng-template #elseBlock><td  (click)="scoreThis(0)">{{scoreNumbers(1)}}</td></ng-template>
+        <td>
+            3-of-a-kind
+        </td>
+        <td>
+            Total
+        </td>
+        <td>
+            {{score3OfKind()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            2's
+        </td>
+        <td>
+            10
+        </td>
+        <td *ngIf="score.numbers[1] !== -1; else elseBlock1">{{score.numbers[1]}}</td>
+        <ng-template #elseBlock1><td  (click)="scoreThis(1)">{{scoreNumbers(2)}}</td></ng-template>
+        <td>
+            4-of-a-kind
+        </td>
+        <td>
+            Total
+        </td>
+        <td>
+            {{score4OfKind()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            3's
+        </td>
+        <td>
+            15
+        </td>
+        <td *ngIf="score.numbers[2] !== -1; else elseBlock2">{{score.numbers[2]}}</td>
+        <ng-template #elseBlock2><td  (click)="scoreThis(2)">{{scoreNumbers(3)}}</td></ng-template>
+        <td>
+            Sm Straight
+        </td>
+        <td>
+            15
+        </td>
+        <td>
+            {{scoreSmallStraight()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            4's
+        </td>
+        <td>
+            20
+        </td>
+        <td *ngIf="score.numbers[3] !== -1; else elseBlock3">{{score.numbers[3]}}</td>
+        <ng-template #elseBlock3><td  (click)="scoreThis(3)">{{scoreNumbers(4)}}</td></ng-template>
+        <td>
+            Lg Straight
+        </td>
+        <td>
+            20
+        </td>
+        <td>
+            {{scoreLargeStraight()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            5's
+        </td>
+        <td>
+            25
+        </td>
+        <td *ngIf="score.numbers[4] !== -1; else elseBlock4">{{score.numbers[4]}}</td>
+        <ng-template #elseBlock4><td  (click)="scoreThis(4)">{{scoreNumbers(5)}}</td></ng-template>
+        <td>
+            Full House
+        </td>
+        <td>
+            25
+        </td>
+        <td>
+            {{scoreFullHouse()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            6's
+        </td>
+        <td>
+            30
+        </td>
+        <td *ngIf="score.numbers[5] !== -1; else elseBlock5">{{score.numbers[5]}}</td>
+        <ng-template #elseBlock5><td  (click)="scoreThis(5)">{{scoreNumbers(6)}}</td></ng-template>
+        <td>
+            High Roll
+        </td>
+        <td>
+            Total
+        </td>
+        <td>
+            {{scoreHighRoll()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            BONUS (63+)
+        </td>
+        <td>
+            25
+        </td>
+        <td>
+            ---
+        </td>
+        <td>
+            YUM
+        </td>
+        <td>
+            40
+        </td>
+        <td>
+            {{scoreYum()}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dice Total:
+        </td>
+        <td>
+            130
+        </td>
+        <td>
+            ---
+        </td>
+        <td>
+            Dice Total:
+        </td>
+        <td>
+            190
+        </td>
+        <td>
+            ---
+        </td>
+    </tr>
+</table>
