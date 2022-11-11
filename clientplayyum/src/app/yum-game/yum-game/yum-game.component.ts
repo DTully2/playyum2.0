@@ -67,7 +67,33 @@ export class YumGameComponent implements OnInit {
       case 5:
         this.score.numbers[5] = this.scoreNumbers(6);
         break;
+      case 6:
+        this.score.threeofakind = this.score3OfKind();
+        break;
+      case 7:
+        this.score.fourofakind = this.score4OfKind();
+        break;
+      case 8:
+        this.score.smstraight = this.scoreSmallStraight();
+        break;
+      case 9:
+        this.score.lgstraight = this.scoreLargeStraight();
+        break;
+      case 10:
+        this.score.fullhouse = this.scoreFullHouse();
+        break;
     }
+  }
+
+  scoreBonus(): number {
+    if(this.score.numbers[0] !== -1 && this.score.numbers[1] !== -1 && this.score.numbers[2] !== -1 && this.score.numbers[3] !== -1 && this.score.numbers[4] !== -1 && this.score.numbers[5] !== -1)
+      if(this.score.numbers[0] + this.score.numbers[1] + this.score.numbers[2] + this.score.numbers[3] + this.score.numbers[4] + this.score.numbers[5] >= 63)
+      {
+        return 25;
+      } else {
+        return 0;
+      }
+    return -1;
   }
 
   scoreNumbers(value: number): number {

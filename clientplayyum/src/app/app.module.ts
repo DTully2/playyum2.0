@@ -38,7 +38,8 @@ import { YumGameModule } from './yum-game/yum-game.module';
     MatInputModule,
     GaugeModule.forRoot(),
     MatTabsModule,
-    YumGameModule
+    YumGameModule,
+    HttpClientModule,
   ],
   providers: [
     {

@@ -48,11 +48,11 @@ memberLoginForm: FormGroup;
       
     this.member.password = this.memberLoginForm.value.password;
     this.member.username = this.memberLoginForm.value.userName;
-    if(this.member.username !== null)
-    {
-      localStorage.setItem('login', this.member!.username!);
-      localStorage.setItem('userInfo', JSON.stringify( this.member));
-    }
+    // if(this.member.username !== null)
+    // {
+    //   localStorage.setItem('login', this.member!.username!);
+    //   localStorage.setItem('userInfo', JSON.stringify( this.member));
+    // }
     // console.log(this.member); 
      this.check.emit(this.member);
   }

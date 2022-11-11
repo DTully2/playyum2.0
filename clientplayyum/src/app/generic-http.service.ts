@@ -28,11 +28,16 @@ export class GenericHttpService<T> {
       .pipe(retry(2), catchError(this.handleError));
   } // getAll
 
-  //confirm username and password match
-  public confirmUsernameAndPassword(member: Member ): Observable<T> {
-    console.log('confirmUsernameAndPassword/ '  + member.username + ' ' + member.password);       
+  public getOne(id: number): Observable<T> {
     return this.httpClient
-      .get<T>(`${BASEURL}${this.entity}?username=${member.username}&password=${member.password}`) 
+      .get<T>(`${BASEURL}${this.entity}/${id}`)
+      .pipe(retry(2), catchError(this.handleError));
+  } // getOne
+
+  //confirm username and password match
+  public confirmUsernameAndPassword(member: Member): Observable<T> {     
+    return this.httpClient
+      .get<T>(`${BASEURL}members/login?username=${member.username}&password=${member.password}`) 
       .pipe(retry(2), catchError(this.handleError));
   } // confirmUsernameAndPassword
 

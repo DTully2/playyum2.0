@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
+import { getCookie, setCookie } from 'typescript-cookie'
 
 @Component({
   templateUrl: 'member-home.component.html',
@@ -37,7 +38,7 @@ export class MemberHomeComponent implements OnInit {
     console.log(vendor);
     this.memberService.confirmUsernameAndPassword(vendor).subscribe({
       // Create observer object
-      next: (emp: Member) => (this.msg = `Members ${emp?.username} Signed in!`, window.location.href='/landingpage'),
+      next: (emp: Member) => {console.log(emp); setCookie("loginId", emp.id); this.msg = `Members ${emp.username} Signed in!`, window.location.href='/landingpage'},
       error: (err: Error) => (this.msg = `Not valid login Please register or Try again!`),
       complete: () => (this.hideEditForm = !this.hideEditForm),
     });

@@ -17,8 +17,5 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     @Transactional
     @Query("delete from Member where id = ?1")
     int deleteOne(Long memberid);
-
-    // Member findById(long id);
-
-    Object findByUsernameAndPassword(String username, String password);
+    // Member findByUsernameAndPassword(String username, String password);
 }
