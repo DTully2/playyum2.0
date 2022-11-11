@@ -14,6 +14,7 @@ export class MemberloginComponent implements OnInit {
     password: '',
     email: '',
     username: '',
+    points: 0,
   };
   //  @Input() members: Member[] | null = null;
   // @Output() cancelled = new EventEmitter();

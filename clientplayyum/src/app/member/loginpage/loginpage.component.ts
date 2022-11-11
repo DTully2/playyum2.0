@@ -16,6 +16,7 @@ export class LoginpageComponent implements OnInit {
     password: '',
     email: '',
     username: '',
+    points: 0,
   };
   
   @Output() check = new EventEmitter();

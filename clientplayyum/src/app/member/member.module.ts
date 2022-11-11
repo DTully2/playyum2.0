@@ -8,12 +8,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { MemberProfileComponent } from './member-profile/member-profile.component';
+import { MemberDetailsComponent } from './member-details/member-details.component';
 
 
 @NgModule({
   declarations: [
     MemberListComponent,   
-    MemberHomeComponent, MemberloginComponent, LoginpageComponent, LandingpageComponent, MemberProfileComponent
+    MemberHomeComponent, MemberloginComponent, LoginpageComponent, LandingpageComponent, MemberProfileComponent, MemberDetailsComponent
   ],
   imports: [
     CommonModule,

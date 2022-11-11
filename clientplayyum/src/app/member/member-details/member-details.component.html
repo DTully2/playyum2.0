@@ -1,0 +1,15 @@
+<form [formGroup]="memberForm" (ngSubmit)="updateCurrentMember()">
+    <div>
+        <input matInput placeholder="username" type="text" formControlName="username" />
+        <input matInput placeholder="email" type="email" formControlName="email" />
+        <input matInput placeholder="password" type="password" formControlName="password" />
+    </div>
+    <div>
+        <button mat-raised-button type="button" (click)="updateCurrentMember()">
+            Save
+        </button>
+        <button mat-raised-button type="button" (click)="cancelled.emit(currentMember)">
+            Cancel
+        </button>
+    </div>
+</form>

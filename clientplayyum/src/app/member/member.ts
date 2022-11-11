@@ -3,4 +3,5 @@ export interface Member {
   username?: string;
   password: string;
   email: string;
+  points: number;
 }
