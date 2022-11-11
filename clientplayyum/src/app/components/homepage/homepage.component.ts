@@ -44,7 +44,9 @@ export class HomepageComponent implements OnInit {
   openGameDetails(id: string): void {
     this.router.navigate(['details', id]);   
   }
-
+  doThis(): void {
+    console.log('do this');
+  }
   ngOnDestroy(): void {
     if(this.gameSub){
     this.gameSub.unsubscribe();

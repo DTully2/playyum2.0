@@ -17,7 +17,23 @@
       </mat-select>
     </mat-form-field>
   </div>
-
+  <div class="games">
+    <ng-container >
+      <div class="game" (click)="doThis()" >
+          <div class="game-thumb-container">
+            <img src="assets/Images/playum.png" alt="slug" class="game-thumbnail"/>
+              <p > No Image</p>
+          </div>
+          <div class="game-description">
+              <p class="game-name"> Yum</p>
+              <div class="game-platforms">
+                  <img src="assets/Images/playum.png" alt="slug" class="game-platform"/>
+               </div>
+          </div>
+      </div>
+    </ng-container>
+  </div>
+  
 <div class="games">
   <ng-container *ngFor="let game of games">
     <div class="game" (click)="openGameDetails(game.id)">
