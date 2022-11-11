@@ -14,7 +14,7 @@ export class MemberProfileComponent implements OnInit {
   memberDataSource$?: Observable<Member>;
   member: Member;
   loadedMembers: Member[] = [];
-  profile = localStorage.getItem('member')?localStorage.getItem('member'):" ";
+
   
   // member: Member;
   // this.member = memberService.getOne(2)[0];
@@ -26,16 +26,16 @@ export class MemberProfileComponent implements OnInit {
       email: "",
       username: "",
     };
-    
-    console.log("this is the profile log"+this.profile);
 
-    (this.memberService.getOne(1).pipe(
-      map((members) => {
-      console.log(members);
-      this.member = members;
-      })
-      )),
-      catchError((err) => (this.msg = err.message));
+    
+
+    // (this.memberService.getOne(1).pipe(
+    //   map((members) => {
+    //   console.log(members);
+    //   this.member = members;
+    //   })
+    //   )),
+      // catchError((err) => (this.msg = err.message));
   }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class MemberProfileComponent implements OnInit {
       idInt = parseInt(cookieString);
     }
     if(idInt !== -1)
-    this.memberService.getOne(1).subscribe({
+    this.memberService.getOne(idInt).subscribe({
       next: (emp: Member) => {
         console.log(emp.id);
         this.member = emp;
