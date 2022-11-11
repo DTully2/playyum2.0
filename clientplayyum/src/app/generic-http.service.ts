@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 import { BASEURL } from '@app/constants';
 import { Member } from './member/member';
 @Injectable({
@@ -38,7 +38,7 @@ export class GenericHttpService<T> {
   public confirmUsernameAndPassword(member: Member): Observable<T> {     
     return this.httpClient
       .get<T>(`${BASEURL}members/login?username=${member.username}&password=${member.password}`) 
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(map((member)=>{localStorage.setItem('member',JSON.stringify(member));return member;}),retry(2), catchError(this.handleError));
   } // confirmUsernameAndPassword
 
 

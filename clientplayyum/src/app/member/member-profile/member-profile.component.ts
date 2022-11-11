@@ -17,6 +17,8 @@ export class MemberProfileComponent implements OnInit {
   hideEditForm: boolean;
   // profile = localStorage.getItem('userInfo')?localStorage.getItem('userInfo'):" ";
 
+
+  
   // member: Member;
   // this.member = memberService.getOne(2)[0];
   //   // var test = this.profile !== null? JSON.parse(this.profile) : '';
@@ -38,21 +40,31 @@ export class MemberProfileComponent implements OnInit {
       catchError((err) => (this.msg = err.message));
   }// c'tor
 
+    
+
+    // (this.memberService.getOne(1).pipe(
+    //   map((members) => {
+    //   console.log(members);
+    //   this.member = members;
+    //   })
+    //   )),
+      // catchError((err) => (this.msg = err.message));
+
   ngOnInit(): void {
     let cookieString: string | undefined = getCookie("loginId");
     let idInt = -1;
     if (cookieString !== undefined) {
       idInt = parseInt(cookieString);
     }
-    if (idInt !== -1)
-      this.memberService.getOne(1).subscribe({
-        next: (emp: Member) => {
-          console.log(emp.id);
-          this.member = emp;
-        },
-        error: (err: Error) => (this.msg = `Profile not found! - ${err.message}`),
-      }
-      );
+    if(idInt !== -1)
+    this.memberService.getOne(idInt).subscribe({
+      next: (emp: Member) => {
+        console.log(emp.id);
+        this.member = emp;
+      },
+      error: (err: Error) => (this.msg = `Profile not found! - ${err.message}`),
+    }
+    );
 
     console.log(this.msg);
   }// OnInit
