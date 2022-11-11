@@ -26,7 +26,9 @@ export class MemberProfileComponent implements OnInit {
       email: "",
       username: "",
     };
+    
     console.log("this is the profile log"+this.profile);
+
     (this.memberService.getOne(1).pipe(
       map((members) => {
       console.log(members);
