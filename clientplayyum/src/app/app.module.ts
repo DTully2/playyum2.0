@@ -22,8 +22,9 @@ import { GaugeModule } from 'angular-gauge';
 import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { YumGameModule } from './yum-game/yum-game.module';
+import { PlayyumDetailComponent } from './components/playyum-detail/playyum-detail.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HomepageComponent, SearchBarComponent, DetailsComponent, GameTabsComponent],
+  declarations: [AppComponent, HomeComponent, HomepageComponent, SearchBarComponent, DetailsComponent, GameTabsComponent, PlayyumDetailComponent],
   
   imports: [
     BrowserModule,

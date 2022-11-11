@@ -9,6 +9,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { DetailsComponent } from './components/details/details.component';
 import { YumGameComponent } from './yum-game/yum-game/yum-game.component';
 import { MemberProfileComponent } from './member/member-profile/member-profile.component';
+import { PlayyumDetailComponent } from './components/playyum-detail/playyum-detail.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, title: 'clientplayyum - Home' },
   { path: '', component: HomeComponent, title: 'clientplayyum - Home' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'details/:id', component: DetailsComponent },
   { path: 'yum', component: YumGameComponent, title: "clientplayyum - Yum" },
   { path: 'memberprofile',component: MemberProfileComponent, title: "clientplayyum - Profile"},
+  { path: 'playyumdetail', component: PlayyumDetailComponent, title: "clientplayyum - Playyum Detail" }
 ];
 
 @NgModule({

@@ -11,7 +11,7 @@ import { HttpService } from '@app/services/http.service';
 export class HomepageComponent implements OnInit {
   public sort!: string ;
   public games!: Array<Game> ;
-  //to avoif memory leak we will create a Subscription to watch for changes in the params
+  //to avoid memory leak we will create a Subscription to watch for changes in the params
   private routeSub!: Subscription;
   private gameSub!: Subscription;
 
