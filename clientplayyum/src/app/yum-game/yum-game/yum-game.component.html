@@ -4,7 +4,10 @@
 <img [src]="getImage(3)" style="width:100px; height:100px;" (click)="setKeep(3)"/> 
 <img [src]="getImage(4)" style="width:100px; height:100px;" (click)="setKeep(4)"/> 
 
-<button id="btn_roll" (click)="bpressRollDice()">Roll those dice!</button>
+<button id="btn_roll" *ngIf="score.total === -1; else elseBlockGame" (click)="bpressRollDice()">Roll those dice!</button>
+<ng-template #elseBlockGame><button id="btn_restart" (click)="resetGame()" >New Game</button></ng-template>
+<p class="yum_bold">Roll #:{{rollNum}}</p>
+<p>{{statusmsg}}</p>
 
 <table>
     <tr>
@@ -34,16 +37,16 @@
         <td>
             5
         </td>
-        <td *ngIf="score.numbers[0] !== -1; else elseBlock">{{score.numbers[0]}}</td>
-        <ng-template #elseBlock><td  (click)="scoreThis(0)">{{scoreNumbers(1)}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.numbers[0] !== -1; else elseBlock">{{score.numbers[0]}}</td>
+        <ng-template #elseBlock><td class="yum_canScore" (click)="scoreThis(0)">{{scoreNumbers(1)}}</td></ng-template>
         <td>
             3-of-a-kind
         </td>
         <td>
             Total
         </td>
-        <td *ngIf="score.threeofakind !== -1; else elseBlock3Kind">{{score.threeofakind}}</td>
-        <ng-template #elseBlock3Kind><td  (click)="scoreThis(6)">{{score3OfKind()}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.threeofakind !== -1; else elseBlock3Kind">{{score.threeofakind}}</td>
+        <ng-template #elseBlock3Kind><td class="yum_canScore" (click)="scoreThis(6)">{{score3OfKind()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -52,16 +55,16 @@
         <td>
             10
         </td>
-        <td *ngIf="score.numbers[1] !== -1; else elseBlock1">{{score.numbers[1]}}</td>
-        <ng-template #elseBlock1><td  (click)="scoreThis(1)">{{scoreNumbers(2)}}</td></ng-template>
+        <td class="yum_scored"  *ngIf="score.numbers[1] !== -1; else elseBlock1">{{score.numbers[1]}}</td>
+        <ng-template #elseBlock1><td class="yum_canScore" (click)="scoreThis(1)">{{scoreNumbers(2)}}</td></ng-template>
         <td>
             4-of-a-kind
         </td>
         <td>
             Total
         </td>
-        <td *ngIf="score.fourofakind !== -1; else elseBlock4Kind">{{score.fourofakind}}</td>
-        <ng-template #elseBlock4Kind><td  (click)="scoreThis(7)">{{score4OfKind()}}</td></ng-template>
+        <td class="yum_scored"  *ngIf="score.fourofakind !== -1; else elseBlock4Kind">{{score.fourofakind}}</td>
+        <ng-template #elseBlock4Kind><td class="yum_canScore" (click)="scoreThis(7)">{{score4OfKind()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -70,16 +73,16 @@
         <td>
             15
         </td>
-        <td *ngIf="score.numbers[2] !== -1; else elseBlock2">{{score.numbers[2]}}</td>
-        <ng-template #elseBlock2><td  (click)="scoreThis(2)">{{scoreNumbers(3)}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.numbers[2] !== -1; else elseBlock2">{{score.numbers[2]}}</td>
+        <ng-template #elseBlock2><td class="yum_canScore" (click)="scoreThis(2)">{{scoreNumbers(3)}}</td></ng-template>
         <td>
             Sm Straight
         </td>
         <td>
             15
         </td>
-        <td *ngIf="score.smstraight !== -1; else elseBlockSmStraight">{{score.smstraight}}</td>
-        <ng-template #elseBlockSmStraight><td  (click)="scoreThis(8)">{{scoreSmallStraight()}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.smstraight !== -1; else elseBlockSmStraight">{{score.smstraight}}</td>
+        <ng-template #elseBlockSmStraight><td class="yum_canScore" (click)="scoreThis(8)">{{scoreSmallStraight()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -88,16 +91,16 @@
         <td>
             20
         </td>
-        <td *ngIf="score.numbers[3] !== -1; else elseBlock3">{{score.numbers[3]}}</td>
-        <ng-template #elseBlock3><td  (click)="scoreThis(3)">{{scoreNumbers(4)}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.numbers[3] !== -1; else elseBlock3">{{score.numbers[3]}}</td>
+        <ng-template #elseBlock3><td class="yum_canScore" (click)="scoreThis(3)">{{scoreNumbers(4)}}</td></ng-template>
         <td>
             Lg Straight
         </td>
         <td>
             20
         </td>
-        <td *ngIf="score.lgstraight !== -1; else elseBlockLgStraight">{{score.lgstraight}}</td>
-        <ng-template #elseBlockLgStraight><td  (click)="scoreThis(9)">{{scoreLargeStraight()}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.lgstraight !== -1; else elseBlockLgStraight">{{score.lgstraight}}</td>
+        <ng-template #elseBlockLgStraight><td class="yum_canScore" (click)="scoreThis(9)">{{scoreLargeStraight()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -106,16 +109,16 @@
         <td>
             25
         </td>
-        <td *ngIf="score.numbers[4] !== -1; else elseBlock4">{{score.numbers[4]}}</td>
-        <ng-template #elseBlock4><td  (click)="scoreThis(4)">{{scoreNumbers(5)}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.numbers[4] !== -1; else elseBlock4">{{score.numbers[4]}}</td>
+        <ng-template #elseBlock4><td class="yum_canScore" (click)="scoreThis(4)">{{scoreNumbers(5)}}</td></ng-template>
         <td>
             Full House
         </td>
         <td>
             25
         </td>
-        <td *ngIf="score.fullhouse !== -1; else elseBlockFullHouse">{{score.fullhouse}}</td>
-        <ng-template #elseBlockFullHouse><td  (click)="scoreThis(10)">{{scoreFullHouse()}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.fullhouse !== -1; else elseBlockFullHouse">{{score.fullhouse}}</td>
+        <ng-template #elseBlockFullHouse><td class="yum_canScore" (click)="scoreThis(10)">{{scoreFullHouse()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -124,16 +127,16 @@
         <td>
             30
         </td>
-        <td *ngIf="score.numbers[5] !== -1; else elseBlock5">{{score.numbers[5]}}</td>
-        <ng-template #elseBlock5><td  (click)="scoreThis(5)">{{scoreNumbers(6)}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.numbers[5] !== -1; else elseBlock5">{{score.numbers[5]}}</td>
+        <ng-template #elseBlock5><td class="yum_canScore" (click)="scoreThis(5)">{{scoreNumbers(6)}}</td></ng-template>
         <td>
             High Roll
         </td>
         <td>
             Total
         </td>
-        <td *ngIf="score.highroll !== -1; else elseBlockHighRoll">{{score.highroll}}</td>
-        <ng-template #elseBlockHighRoll><td  (click)="scoreThis(10)">{{scoreHighRoll()}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.highroll !== -1; else elseBlockHighRoll">{{score.highroll}}</td>
+        <ng-template #elseBlockHighRoll><td class="yum_canScore" (click)="scoreThis(11)">{{scoreHighRoll()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -141,16 +144,16 @@
         </td>
         <td>
             25
-            <td *ngIf="scoreBonus() !== -1; else elseBlockBonus">---</td>
-            <ng-template #elseBlockBonus><td>{{scoreBonus()}}</td></ng-template>
+            <td class="yum_scored" *ngIf="scoreBonus() !== -1; else elseBlockBonus">{{scoreBonus()}}</td>
+            <ng-template #elseBlockBonus><td>---</td></ng-template>
         <td>
             YUM
         </td>
         <td>
             40
         </td>
-        <td *ngIf="score.yum !== -1; else elseBlockYum">{{score.yum}}</td>
-        <ng-template #elseBlockYum><td  (click)="scoreThis(11)">{{scoreYum()}}</td></ng-template>
+        <td class="yum_scored" *ngIf="score.yum !== -1; else elseBlockYum">{{score.yum}}</td>
+        <ng-template #elseBlockYum><td class="yum_canScore" (click)="scoreThis(12)">{{scoreYum()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -160,7 +163,7 @@
             130
         </td>
         <td>
-            ---
+            {{getNumberTotal()}}
         </td>
         <td>
             Dice Total:
@@ -169,7 +172,7 @@
             190
         </td>
         <td>
-            ---
+            {{getOtherTotal()}}
         </td>
     </tr>
 </table>
