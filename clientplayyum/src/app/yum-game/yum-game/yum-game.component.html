@@ -6,7 +6,7 @@
 
 <button id="btn_roll" *ngIf="score.total === -1; else elseBlockGame" (click)="bpressRollDice()">Roll those dice!</button>
 <ng-template #elseBlockGame><button id="btn_restart" (click)="resetGame()" >New Game</button></ng-template>
-<p class="yum_bold">Roll #:{{rollNum}}</p>
+<p class="yum_bold">Roll #:{{score.roll}}</p>
 <p>{{statusmsg}}</p>
 
 <table>
@@ -37,7 +37,7 @@
         <td>
             5
         </td>
-        <td class="yum_scored" *ngIf="score.numbers[0] !== -1; else elseBlock">{{score.numbers[0]}}</td>
+        <td class="yum_scored" *ngIf="score.ones !== -1; else elseBlock">{{score.ones}}</td>
         <ng-template #elseBlock><td class="yum_canScore" (click)="scoreThis(0)">{{scoreNumbers(1)}}</td></ng-template>
         <td>
             3-of-a-kind
@@ -55,7 +55,7 @@
         <td>
             10
         </td>
-        <td class="yum_scored"  *ngIf="score.numbers[1] !== -1; else elseBlock1">{{score.numbers[1]}}</td>
+        <td class="yum_scored"  *ngIf="score.twos !== -1; else elseBlock1">{{score.twos}}</td>
         <ng-template #elseBlock1><td class="yum_canScore" (click)="scoreThis(1)">{{scoreNumbers(2)}}</td></ng-template>
         <td>
             4-of-a-kind
@@ -73,7 +73,7 @@
         <td>
             15
         </td>
-        <td class="yum_scored" *ngIf="score.numbers[2] !== -1; else elseBlock2">{{score.numbers[2]}}</td>
+        <td class="yum_scored" *ngIf="score.threes !== -1; else elseBlock2">{{score.threes}}</td>
         <ng-template #elseBlock2><td class="yum_canScore" (click)="scoreThis(2)">{{scoreNumbers(3)}}</td></ng-template>
         <td>
             Sm Straight
@@ -82,7 +82,7 @@
             15
         </td>
         <td class="yum_scored" *ngIf="score.smstraight !== -1; else elseBlockSmStraight">{{score.smstraight}}</td>
-        <ng-template #elseBlockSmStraight><td class="yum_canScore" (click)="scoreThis(8)">{{scoreSmallStraight()}}</td></ng-template>
+        <ng-template #elseBlockSmStraight><td class="yum_canScore" (click)="scoreThis(8)">{{ScoreSmallStraight()}}</td></ng-template>
     </tr>
     <tr>
         <td>
@@ -91,7 +91,7 @@
         <td>
             20
         </td>
-        <td class="yum_scored" *ngIf="score.numbers[3] !== -1; else elseBlock3">{{score.numbers[3]}}</td>
+        <td class="yum_scored" *ngIf="score.fours !== -1; else elseBlock3">{{score.fours}}</td>
         <ng-template #elseBlock3><td class="yum_canScore" (click)="scoreThis(3)">{{scoreNumbers(4)}}</td></ng-template>
         <td>
             Lg Straight
@@ -109,7 +109,7 @@
         <td>
             25
         </td>
-        <td class="yum_scored" *ngIf="score.numbers[4] !== -1; else elseBlock4">{{score.numbers[4]}}</td>
+        <td class="yum_scored" *ngIf="score.fives !== -1; else elseBlock4">{{score.fives}}</td>
         <ng-template #elseBlock4><td class="yum_canScore" (click)="scoreThis(4)">{{scoreNumbers(5)}}</td></ng-template>
         <td>
             Full House
@@ -127,7 +127,7 @@
         <td>
             30
         </td>
-        <td class="yum_scored" *ngIf="score.numbers[5] !== -1; else elseBlock5">{{score.numbers[5]}}</td>
+        <td class="yum_scored" *ngIf="score.sixes !== -1; else elseBlock5">{{score.sixes}}</td>
         <ng-template #elseBlock5><td class="yum_canScore" (click)="scoreThis(5)">{{scoreNumbers(6)}}</td></ng-template>
         <td>
             High Roll

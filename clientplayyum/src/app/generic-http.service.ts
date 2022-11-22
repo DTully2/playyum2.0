@@ -58,4 +58,10 @@ export class GenericHttpService<T> {
     window.alert(status);
     return throwError(() => status);
   }
+
+  public getUserGame(UserId: number): Observable<T> {     
+    return this.httpClient
+      .get<T>(`${BASEURL}scores/unfinished/${UserId}`) 
+      .pipe(retry(2), catchError(this.handleError));
+  } // confirmUsernameAndPassword
 } // GenericHttpService
