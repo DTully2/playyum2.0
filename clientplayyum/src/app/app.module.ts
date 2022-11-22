@@ -23,8 +23,9 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { YumGameModule } from './yum-game/yum-game.module';
 import { PlayyumDetailComponent } from './components/playyum-detail/playyum-detail.component';
+import { ShopComponent } from './shop/shop.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HomepageComponent, SearchBarComponent, DetailsComponent, GameTabsComponent, PlayyumDetailComponent],
+  declarations: [AppComponent, HomeComponent, HomepageComponent, SearchBarComponent, DetailsComponent, GameTabsComponent, PlayyumDetailComponent, ShopComponent],
   
   imports: [
     BrowserModule,

@@ -16,9 +16,6 @@ export class MemberProfileComponent implements OnInit {
   loadedMembers: Member[] = [];
   hideEditForm: boolean;
   // profile = localStorage.getItem('userInfo')?localStorage.getItem('userInfo'):" ";
-
-
-  
   // member: Member;
   // this.member = memberService.getOne(2)[0];
   //   // var test = this.profile !== null? JSON.parse(this.profile) : '';

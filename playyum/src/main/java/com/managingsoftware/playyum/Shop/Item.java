@@ -1,5 +1,4 @@
-package com.managingsoftware.playyum.ApplicationMembers;
-
+package com.managingsoftware.playyum.Shop;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
@@ -10,14 +9,12 @@ import javax.persistence.Id;
 @Entity
 @Data
 @RequiredArgsConstructor
-public class Member {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
-    private String username;
-    private String password;
-    private String email;
-    private long points;
-    private String avatar;
-    private String dice;
-}
+    private Long Id;
+    private String name;
+    private String img;
+    private Long price;
+    private String type; // dice or avater
+}// end of class
