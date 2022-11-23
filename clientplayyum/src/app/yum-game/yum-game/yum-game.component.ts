@@ -1,20 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Member } from '@app/member/member';
+import { MemberService } from '@app/member/member.service';
 import { getCookie } from 'typescript-cookie';
 import { Score } from '../score'
 import { YumService } from '../yum-game.service';
-
-// class Score {
-//   numbers = [ -1, -1, -1, -1, -1, -1];
-//   threeofakind = -1;
-//   fourofakind = -1;
-//   fullhouse = -1;
-//   highroll = -1;
-//   yum = -1;
-//   smstraight = -1;
-//   lgstraight = -1;
-//   bonus = -1;
-//   total = -1;
-// }
 
 @Component({
   selector: 'app-yum-game',
@@ -24,6 +13,7 @@ import { YumService } from '../yum-game.service';
 
 export class YumGameComponent implements OnInit {
   score: Score;
+  member: Member;
   roundNum = 0;
   playerNum = 0;
   statusmsg = "Welcome to YUM!";
@@ -35,13 +25,21 @@ export class YumGameComponent implements OnInit {
     {"value": 0, "keep": false}
   ];
 
-  constructor(public yumService: YumService){
+  constructor(public yumService: YumService, private memberService: MemberService){
     let cookieString: string | undefined = getCookie("loginId");
     let idInt = -1;
     let found = false;
     if (cookieString !== undefined) {
       idInt = parseInt(cookieString);
     }
+    //console.log(idInt);
+    this.member = {
+      id: 0,
+      password: "",
+      email: "",
+      username: "",
+      points: 0,
+    };
 
     this.score = {
       id: -1,
@@ -67,12 +65,18 @@ export class YumGameComponent implements OnInit {
       dicestring: "0,0,0,0,0"
     }
     if(idInt !== -1 && this.score.userid !== 0)
+    memberService.getOne(idInt).subscribe({
+      next: (mbr: Member) => {
+        this.member = mbr;
+      },
+      error: (err: Error) => (this.statusmsg = `Error: - ${err.message}`)
+    })
     yumService.getUserGame(idInt).subscribe({
       next: (scr: Score) => {
         if(scr.startdate != null && scr.startdate != undefined){
           //console.log("Found a game!");
           this.readDiceString(scr.dicestring);
-          this.statusmsg = "Welcome back to Yum!"; // GET USER NAME HERE!
+          this.statusmsg = "Welcome back to Yum " + this.member.username + "!"; // GET USER NAME HERE!
           this.score = scr;
 
           this.roundNum = this.findRound();
@@ -175,6 +179,12 @@ export class YumGameComponent implements OnInit {
         this.scoreBonus();
         this.score.total = this.getNumberTotal() + this.getOtherTotal();
         this.statusmsg = `Game over! Your final score was: ${this.getNumberTotal() + this.getOtherTotal()}`;
+        this.member.points += (this.getNumberTotal() + this.getOtherTotal());
+        this.memberService.update(this.member).subscribe({
+          // observer object
+          next: (mem: Member) => {console.log("I worked!")},
+          error: (err: Error) => {}
+        });
         this.score.finishdate = new Date();
       }
       if(this.score.id === -1 && this.score.userid !== 0){
@@ -396,7 +406,7 @@ export class YumGameComponent implements OnInit {
   }
 
   resetGame() {
-
+    window.location.reload();
     this.score = {
       id: -1,
       userid: this.score.userid !== -1 ? this.score.userid : 0,

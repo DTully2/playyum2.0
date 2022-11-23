@@ -9,7 +9,7 @@ import { Member } from './member/member';
 })
 export class GenericHttpService<T> {
   // can't inject primitives, so use the @Inject decorator on url
-  constructor(    private httpClient: HttpClient,    @Inject(String) private entity: string  ) {} // constructor
+  constructor(private httpClient: HttpClient,    @Inject(String) private entity: string  ) {} // constructor
   public add(item: T): Observable<T> {
     return this.httpClient
       .post<T>(`${BASEURL}${this.entity}`, item)
@@ -63,5 +63,11 @@ export class GenericHttpService<T> {
     return this.httpClient
       .get<T>(`${BASEURL}scores/unfinished/${UserId}`) 
       .pipe(retry(2), catchError(this.handleError));
-  } // confirmUsernameAndPassword
+  }
+
+  public getUserGames(UserId: number): Observable<T[]> {     
+    return this.httpClient
+      .get<T[]>(`${BASEURL}scores/${UserId}`) 
+      .pipe(retry(2), catchError(this.handleError));
+  }
 } // GenericHttpService

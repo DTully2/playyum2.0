@@ -1,15 +1,173 @@
-<mat-card *ngIf="hideEditForm">
+<mat-card *ngIf="!hideEditForm">
     <p>Your Profile Info</p>
-    <p>{{member.id}}</p>
     <p>{{member.email}}</p>
     <p>{{member.username}}</p>
-    <p>{{member.points}}</p>
-    <p>{{member.password}}</p>
+    <p>Current Points: {{member.points}}</p>
 
     <button (click)="editProfile()">Update Profile</button>
 
 </mat-card>
 <mat-card *ngIf="!hideEditForm">
+    <p>Your Recent Scores</p>
+    <table>
+        <tr *ngFor="let score of loadedScores" (click)="openScore(score.id)">
+            {{score.startdate}} - {{score.finishdate}} : {{score.total}} points.
+        </tr>
+    </table>
+</mat-card>
+<mat-card *ngIf="viewScore">
+    <table>
+        <tr>
+            <th>
+                Roll
+            </th>
+            <th>
+                Scoring
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                   Roll
+            </th>
+            <th>
+                Scoring  
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+        <tr>
+            <td>
+                1's
+            </td>
+            <td>
+                5
+            </td>
+            <td>{{selectedScore ? selectedScore.ones: ""}}</td>
+            <td>
+                3-of-a-kind
+            </td>
+            <td>
+                Total
+            </td>
+            <td>{{selectedScore ? selectedScore.threeofakind: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+                2's
+            </td>
+            <td>
+                10
+            </td>
+            <td>{{selectedScore ? selectedScore.twos: ""}}</td>
+            <td>
+                4-of-a-kind
+            </td>
+            <td>
+                Total
+            </td>
+            <td>{{selectedScore ? selectedScore.fourofakind: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+                3's
+            </td>
+            <td>
+                15
+            </td>
+            <td>{{selectedScore ? selectedScore.threes: ""}}</td>
+            <td>
+                Sm Straight
+            </td>
+            <td>
+                15
+            </td>
+            <td>{{selectedScore ? selectedScore.smstraight: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+                4's
+            </td>
+            <td>
+                20
+            </td>
+            <td>{{selectedScore ? selectedScore.fours: ""}}</td>
+            <td>
+                Lg Straight
+            </td>
+            <td>
+                20
+            </td>
+            <td>{{selectedScore ? selectedScore.lgstraight: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+                5's
+            </td>
+            <td>
+                25
+            </td>
+            <td>{{selectedScore ? selectedScore.fives: ""}}</td>
+            <td>
+                Full House
+            </td>
+            <td>
+                25
+            </td>
+            <td>{{selectedScore ? selectedScore.fullhouse: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+                6's
+            </td>
+            <td>
+                30
+            </td>
+            <td>{{selectedScore ? selectedScore.sixes: ""}}</td>
+            <td>
+                High Roll
+            </td>
+            <td>
+                Total
+            </td>
+            <td>{{selectedScore ? selectedScore.highroll: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+                BONUS (63+)
+            </td>
+            <td>
+                25
+            </td>
+            <td>{{selectedScore ? selectedScore.bonus: ""}}</td>
+            <td>
+                YUM
+            </td>
+            <td>
+                40
+            </td>
+            <td>{{selectedScore ? selectedScore.yum: ""}}</td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                Grand Total:
+            </td>
+            <td>
+                
+            </td>
+            <td>{{selectedScore ? selectedScore.total: ""}}</td>
+        </tr>
+    </table>
+    <button (click)="closeScore()">Close</button>
+</mat-card>
+<mat-card *ngIf="eProfile">
     <mat-card-header layout="row">
         <mat-card-title>
             update user profile
