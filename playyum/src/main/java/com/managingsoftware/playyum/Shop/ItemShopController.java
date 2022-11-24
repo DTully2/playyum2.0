@@ -19,6 +19,14 @@ public class ItemShopController {
         return new ResponseEntity<ItemShop>(itemshop , HttpStatus.OK);
     }
 
+
+    @PutMapping("/api/itemshop")
+    public ResponseEntity<ItemShop> updateOne(@RequestBody ItemShop clientrep) { // use RequestBody here
+        clientrep.setPurchaseDate(LocalDateTime.now());
+        ItemShop itemshop = itemShopRepository.save(clientrep);
+        return new ResponseEntity<ItemShop>(itemshop , HttpStatus.OK);
+    }
+
     @GetMapping("/api/itemshop")
     public ResponseEntity<Iterable<ItemShop>> findAll() {
         Iterable<ItemShop> pos = itemShopRepository.findAll();
@@ -26,4 +34,8 @@ public class ItemShopController {
     }
 
 
+    @DeleteMapping("/api/itemshop/{id}")
+    public ResponseEntity<Integer> deleteOne(@PathVariable String id) {
+    return new ResponseEntity<Integer>(itemShopRepository.deleteOne(id), HttpStatus.OK);
+    }
 }

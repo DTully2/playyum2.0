@@ -5,6 +5,7 @@
 
   <span style="flex: 1 1 auto"></span>
   <a style="color:white" *ngIf="loginInfo !== ''" [routerLink]="['memberprofile']" (click)="setTitle('Game Info')">{{loginInfo}}</a>
+  <img src="../assets/Images/avatar1.png" height="50" width="50"/>
   <button mat-button [matMenuTriggerFor]="appMenu" align="end">
     <mat-icon>menu</mat-icon>
   </button>

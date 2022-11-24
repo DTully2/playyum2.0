@@ -1,6 +1,6 @@
 <p>shop works!</p>
 <table>
     <tr *ngFor="let item of items$ | async" >
-        <img src="../../assets/Images/{{item.img}}" height="100" width="100"> <p> {{item.name}} </p> <button (click)="buy(item.name)">Buy</button>
+        <img src="../../assets/Images/{{item.img}}" height="100" width="100"> <p> {{item.name}} </p> <button (click)="buy(item)">Buy</button>
     </tr>
 </table>

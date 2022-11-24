@@ -9,6 +9,6 @@ import { ItemShop } from './item-shop';
 export class ShopService extends GenericHttpService<ItemShop> {
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'ItemShop');
+    super(httpClient, 'itemshop');
    }// c'tor
 }
