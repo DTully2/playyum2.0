@@ -1,43 +1,93 @@
 <div class="details">
-    <div class="game-banner">
-      <img
-        class="game-banner-img"
-        src="assets/Images/playum.png" alt="slug"
-        alt="background image"
-      />
-    </div>
-    <div class="game-content">
-      <div class="details-wrapper">
-        <div class="game-header">
-          <h1 class="game-header-title">Yum</h1>
-          <h2 class="game-header-release-date">
-            Release: 1995
-          </h2>
-          <p class="game-header-genres">
-            <span>Board game, Adventure </span>
-          </p>
-          <div class="game-gauge">
-            <mwl-gauge
-              class="two"
-              [max]="100"
-              [dialStartAngle]="180"
-              [dialEndAngle]="0"
-              [value]="100"
-              [animated]="true"
-              [color]="getColor"
-              [animationDuration]="2"
-            >
-            </mwl-gauge>
-            <a
-              class="game-gauge-label"
-              target="_blank"
-              href=""
-              >Metacritic</a
-            >
-          </div>
+  <div class="game-banner">
+    <img
+      class="game-banner-img"
+      src="assets/Images/playum.png"
+      alt="slug"
+      alt="background image"
+    />
+  </div>
+  <div class="game-content">
+    <div class="details-wrapper">
+      <div class="game-header">
+        <h1 class="game-header-title">Yum</h1>
+        <h2 class="game-header-release-date">Release: 1995</h2>
+        <p class="game-header-genres">
+          <span>Board game, Adventure </span>
+        </p>
+        <div class="game-gauge">
+          <mwl-gauge
+            class="two"
+            [max]="100"
+            [dialStartAngle]="180"
+            [dialEndAngle]="0"
+            [value]="100"
+            [animated]="true"
+            [color]="getColor"
+            [animationDuration]="2"
+          >
+          </mwl-gauge>
+          <a class="game-gauge-label" target="_blank" href="">Metacritic</a>
         </div>
-         <!-- <app-game-tabs></app-game-tabs>  -->
+      </div>
+      <div class="game1-tabs">
+        <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
+          <mat-tab label="About">
+            <p  class="game1-tabs-par">
+              Platforms: 
+              <span 
+                ><span >Pc, FamilyTable </span></span
+              >
+            </p>
+            <p  class="game1-tabs-par">
+              Publishers:
+              <span >
+                <span > Bojeux, Inc., Classic Games, Éditions Gladius International, Inc., Parker Brothers, GROUP2GROUP </span></span
+              >
+            </p>
+            <p class="game1-tabs-par">
+              Website: 
+              <a
+                class="game1-tabs-link"
+                (click)="doThat()"
+                >www.PlayYumHere.orc</a
+              >
+            </p>
+            <div class="game1-description" >The aim of the game is to collect the most points through dice combinations. Players must try to complete the dice combinations entered on their score sheet by collecting the greatest possible number of points. To achieve this, a player is entitled to roll the dice up to three times per turn. If the player fails to complete a combination after the third roll, the player may add up his or her points in the most advantageous way possible
+              Made in Canada </div>
+            <p class="game1-tabs-votes">
+              <ng-container >
+                <span >
+                  <mat-icon class="game1-votes-up">thumb_up</mat-icon>
+                  <span class="game1-votes-count">{{   4 }}</span>
+                </span>
+                <span >
+                  <mat-icon class="game1-votes-down">thumb_down</mat-icon>
+                  <span class="game1-votes-count">{{  -100 }}</span>
+                </span>
+              </ng-container>
+            </p>
+          </mat-tab>
+          <mat-tab label="Screenshots" >
+            <img
+              class="game1-screenshot"
+              
+              src=""
+              alt="screenshot"
+            />
+          </mat-tab>
+          <mat-tab label="Trailers" *ngIf="">
+            <video
+              class="game1-trailer"
+              controls
+             
+            >
+              <source src="" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
   </div>
-  
+</div>

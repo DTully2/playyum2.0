@@ -45,7 +45,7 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['details', id]);   
   }
   doThis(): void {
-    console.log('do this');
+    this.router.navigateByUrl('/playyumdetail')
   }
   ngOnDestroy(): void {
     if(this.gameSub){

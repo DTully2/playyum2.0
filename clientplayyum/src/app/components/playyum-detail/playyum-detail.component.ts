@@ -1,13 +1,16 @@
+import { DomPortalHost } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-playyum-detail',
   templateUrl: './playyum-detail.component.html',
   styleUrls: ['./playyum-detail.component.scss']
 })
 export class PlayyumDetailComponent implements OnInit {
+ 
 
-  constructor() { }
+  constructor( private router: Router,
+    private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
   }
@@ -21,5 +24,9 @@ export class PlayyumDetailComponent implements OnInit {
     } else {
       return '#ef4655';
     }
+  }
+  doThat(): void {
+    console.log('doThat')
+    this.router.navigateByUrl('/yum')
   }
 }
