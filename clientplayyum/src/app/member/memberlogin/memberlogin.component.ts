@@ -15,6 +15,8 @@ export class MemberloginComponent implements OnInit {
     email: '',
     username: '',
     points: 0,
+    avatar: '',
+    dice: 'white'
   };
   //  @Input() members: Member[] | null = null;
   // @Output() cancelled = new EventEmitter();

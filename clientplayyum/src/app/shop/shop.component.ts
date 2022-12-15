@@ -34,6 +34,8 @@ export class ShopComponent implements OnInit {
       email: "",
       username: "",
       points: 0,
+      avatar: '',
+      dice: 'white'
     };
 
     // (this.memberService.getOne(1).pipe(

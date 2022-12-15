@@ -17,6 +17,8 @@ export class LoginpageComponent implements OnInit {
     email: '',
     username: '',
     points: 0,
+    avatar: '',
+    dice: 'white'
   };
   
   @Output() check = new EventEmitter();

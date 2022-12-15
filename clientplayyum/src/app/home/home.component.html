@@ -8,6 +8,14 @@
       <img src="assets/Images/playum.png" alt="logo" width="100" height="150" />
     </mat-card-header>
   </div>
+  <mat-card>
+    <p>Worldwide High Scores</p>
+    <table>
+        <tr *ngFor="let score of topScores">
+            {{score.name}} : {{score.total}} points.
+        </tr>
+    </table>
+</mat-card>
   
   <mat-card-footer align="end" class="my-accent-text margin-right-2">
     &copy;PlayYum - 2022

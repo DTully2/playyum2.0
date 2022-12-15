@@ -39,6 +39,8 @@ export class YumGameComponent implements OnInit {
       email: "",
       username: "",
       points: 0,
+      avatar: "",
+      dice: "white"
     };
 
     this.score = {
@@ -78,7 +80,7 @@ export class YumGameComponent implements OnInit {
           this.readDiceString(scr.dicestring);
           this.statusmsg = "Welcome back to Yum " + this.member.username + "!"; // GET USER NAME HERE!
           this.score = scr;
-
+          this.score.userid = idInt;
           this.roundNum = this.findRound();
           found = true;
         }
@@ -101,12 +103,12 @@ export class YumGameComponent implements OnInit {
 
   getImage(index: number) : string {
     if(this.dice[index].value === 0){
-      return "assets/Images/white_" + "6" + ".png";
+      return "assets/Images/" + this.member.dice + "_" + "6" + ".png";
     }
     if(this.dice[index].keep){
-      return "assets/Images/white_" + this.dice[index].value + "_selected.png";
+      return "assets/Images/" + this.member.dice + "_"+ this.dice[index].value + "_selected.png";
     }
-    return "assets/Images/white_" + this.dice[index].value + ".png";
+    return "assets/Images/" + this.member.dice + "_" + this.dice[index].value + ".png";
   }
 
   setKeep(index: number): void {

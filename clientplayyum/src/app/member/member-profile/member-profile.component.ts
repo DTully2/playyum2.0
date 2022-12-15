@@ -6,6 +6,10 @@ import { MemberService } from '../member.service';
 import { YumService } from '../../yum-game/yum-game.service';
 import { getCookie, setCookie } from 'typescript-cookie'
 import { Score } from '@app/yum-game/score';
+import { ItemService } from '@app/shop/item.service';
+import { ShopService } from '@app/shop/shop.service';
+import { ItemShop } from '@app/shop/item-shop';
+import { Item } from '@app/shop/item';
 @Component({
   selector: 'app-member-profile',
   templateUrl: './member-profile.component.html',
@@ -14,9 +18,12 @@ import { Score } from '@app/yum-game/score';
 export class MemberProfileComponent implements OnInit {
   msg: string = '';
   memberDataSource$?: Observable<Member>;
+  allItems: Item[] = [];
+  ownedItems: Item[] = [];
   member: Member;
   loadedScores?: Score[] = [];
   loadedMembers: Member[] = [];
+  loadedItemShops: ItemShop[] = [];
   hideEditForm: boolean;
   eProfile: boolean = false;
   viewScore: boolean = false;
@@ -25,13 +32,15 @@ export class MemberProfileComponent implements OnInit {
   // member: Member;
   // this.member = memberService.getOne(2)[0];
   //   // var test = this.profile !== null? JSON.parse(this.profile) : '';
-  constructor(private memberService: MemberService, private yumService: YumService) {
+  constructor(private memberService: MemberService, private yumService: YumService, private shopService: ShopService, private itemService: ItemService) {
     this.member = {
       id: 0,
       password: "",
       email: "",
       username: "",
       points: 0,
+      avatar: "",
+      dice: "",
     };
     this.selectedScore = {
       id: -1,
@@ -96,7 +105,38 @@ export class MemberProfileComponent implements OnInit {
           this.loadedScores = scr;
         },
         error: (err: Error) => (this.msg = `Profile not found! - ${err.message}`),
-      })
+      });
+      this.shopService.getById(idInt).subscribe({
+        next: (scr: ItemShop[]) => {
+          this.loadedItemShops = scr;     
+          scr.forEach(item => {
+            console.log(item);
+          })   
+        },
+        error: (err: Error) => (this.msg = `Profile not found! - ${err.message}`),
+      });
+      this.itemService.get().subscribe({
+        next: (scr: Item[]) => {
+          this.allItems = scr;     
+          scr.forEach(item => {
+            console.log(item);
+          });
+          this.allItems.forEach(item => {
+            this.loadedItemShops.forEach(itemshop => {
+              console.log("Compare");
+              console.log(itemshop);
+              console.log(item);
+              console.log("EndCompare");
+              if(itemshop.itemId === item.id){
+                console.log("Pushed!");
+                this.ownedItems.push(item);
+              }
+            })
+          });
+        },
+        error: (err: Error) => (this.msg = `Profile not found! - ${err.message}`),
+      });
+
     }
 
 
@@ -127,6 +167,22 @@ export class MemberProfileComponent implements OnInit {
     this.eProfile = false;
     console.log("cancelled");
   }//cancel
+
+  onPickSkin(value: string | null | undefined) {
+    if(value !== null && value !== undefined){
+      this.member.dice = value;
+      console.log("updating...");
+      this.memberService.update(this.member).subscribe({
+        // observer object
+        next: (mem: Member) => (this.msg = `Member ${mem.username} updated!`),
+        error: (err: Error) => (this.msg = `Update failed! - ${err.message}`),
+        complete: () => {
+          this.hideEditForm = false;
+          this.eProfile = false;
+        },
+      });
+    }
+    }
 
   update(currentMember: Member): void {
     this.memberService.update(currentMember).subscribe({

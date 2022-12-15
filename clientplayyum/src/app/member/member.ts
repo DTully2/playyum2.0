@@ -4,4 +4,6 @@ export interface Member {
   password: string;
   email: string;
   points: number;
+  avatar: string;
+  dice: string;
 }

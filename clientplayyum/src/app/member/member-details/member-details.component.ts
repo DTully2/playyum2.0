@@ -12,6 +12,8 @@ export class MemberDetailsComponent implements OnInit {
     email: '',
     password: '',
     points: 0,
+    avatar: '',
+    dice: ''
   }
 
   @Output() cancelled = new EventEmitter();

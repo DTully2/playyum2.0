@@ -19,6 +19,8 @@ export class MemberHomeComponent implements OnInit {
       password: '',
       email: '',
       points: 0,
+      avatar: '',
+      dice: 'white'
     };
     this.members = [];
     this.msg = '';
@@ -71,6 +73,8 @@ export class MemberHomeComponent implements OnInit {
       password: '',
       email: '',
       points: 0,
+      avatar: '',
+      dice: ''
     };
     this.hideEditForm = !this.hideEditForm;
   } // newVendor

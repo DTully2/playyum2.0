@@ -8,11 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.managingsoftware.playyum.Shop.ItemShop;
+import com.managingsoftware.playyum.Shop.ItemShopRepository;
+
 @CrossOrigin
 @RestController
 public class MemberController {
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private ItemShopRepository itemShopRepository;
 
     @GetMapping("/api/members")
     @ResponseBody  
@@ -51,6 +56,7 @@ public class MemberController {
     @PutMapping("/api/members")
     public ResponseEntity<Member> updateOne(@RequestBody Member member) {
         Member updatedMembers = memberRepository.save(member);
+
         return new ResponseEntity<Member>(updatedMembers, HttpStatus.OK);
     }
 
@@ -65,7 +71,12 @@ public class MemberController {
 
     @PostMapping("/api/members")
     public ResponseEntity<Member> addOne(@RequestBody Member member) {
+        member.setDice("white");
         Member newMember = memberRepository.save(member);
+        ItemShop defaultDice = new ItemShop();
+        defaultDice.setItemId((long)1);
+        defaultDice.setMemberId(newMember.getId());
+        itemShopRepository.save(defaultDice);
     return new ResponseEntity<Member>(newMember, HttpStatus.OK);
     }
     @DeleteMapping("/api/members/{id}")

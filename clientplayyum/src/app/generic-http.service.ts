@@ -70,4 +70,10 @@ export class GenericHttpService<T> {
       .get<T[]>(`${BASEURL}scores/${UserId}`) 
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  public getById(UserId: number): Observable<T[]> {     
+    return this.httpClient
+      .get<T[]>(`${BASEURL}itemshop/${UserId}`) 
+      .pipe(retry(2), catchError(this.handleError));
+  }
 } // GenericHttpService

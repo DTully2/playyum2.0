@@ -1,5 +1,6 @@
 package com.managingsoftware.playyum.Shop;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,14 @@ public class ItemShopController {
     public ResponseEntity<Iterable<ItemShop>> findAll() {
         Iterable<ItemShop> pos = itemShopRepository.findAll();
         return new ResponseEntity<Iterable<ItemShop>>(pos, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/itemshop/{id}")
+    public ResponseEntity<Iterable<ItemShop>> findByUserID(@PathVariable long id) {
+        Iterable<ItemShop> pos = itemShopRepository.findAll();
+        ArrayList<ItemShop> returnArray = new ArrayList<ItemShop>();
+        pos.forEach(itm -> {if(itm.getMemberId() == id)returnArray.add(itm);} );
+        return new ResponseEntity<Iterable<ItemShop>>(returnArray, HttpStatus.OK);
     }
 
 

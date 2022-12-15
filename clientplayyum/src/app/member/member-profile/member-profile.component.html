@@ -3,6 +3,19 @@
     <p>{{member.email}}</p>
     <p>{{member.username}}</p>
     <p>Current Points: {{member.points}}</p>
+    <mat-form-field>
+        <mat-select
+        placeholder="Choose Dice Skin"
+        >
+        <mat-option
+        *ngFor="let item of ownedItems"
+        [value]="item"
+        (onSelectionChange)="onPickSkin(item.name)"
+        >
+        {{ item.name }}</mat-option
+        >
+        </mat-select>
+    </mat-form-field>
 
     <button (click)="editProfile()">Update Profile</button>
 
