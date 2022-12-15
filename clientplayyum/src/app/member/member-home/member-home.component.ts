@@ -27,7 +27,7 @@ export class MemberHomeComponent implements OnInit {
     this.hideEditForm = false;
   } // constructor
   ngOnInit(): void {
-    this.msg = 'Welcome Please choose an option';
+    this.msg = 'Welcome! Please choose an option';
 
   } // ngOnInit
   /**
@@ -41,7 +41,7 @@ export class MemberHomeComponent implements OnInit {
     console.log(vendor);
     this.memberService.confirmUsernameAndPassword(vendor).subscribe({
       // Create observer object
-      next: (emp: Member) => {console.log(emp); setCookie("loginId", emp.id); this.msg = `Members ${emp.username} Signed in!`, window.location.href='/landingpage'},
+      next: (emp: Member) => {console.log(emp); setCookie("loginId", emp.id); this.msg = `Members ${emp.username} Signed in!`, window.location.href='/memberprofile'},
       error: (err: Error) => (this.msg = `Not valid login Please register or Try again!`),
       complete: () => (this.hideEditForm = !this.hideEditForm),
     });

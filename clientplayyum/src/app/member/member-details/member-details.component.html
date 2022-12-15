@@ -1,7 +1,14 @@
 <form [formGroup]="memberForm" (ngSubmit)="updateCurrentMember()">
     <div>
+        <p>Username</p>
         <input matInput placeholder="username" type="text" formControlName="username" />
+        <br>
+        <br>
+        <p>Email</p>
         <input matInput placeholder="email" type="email" formControlName="email" />
+        <br>
+        <br>
+        <p>Password</p>
         <input matInput placeholder="password" type="password" formControlName="password" />
     </div>
     <div>

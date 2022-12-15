@@ -1,13 +1,21 @@
+<div align="center" >
+    <h1>{{statusmsg}}</h1>
+
 <img [src]="getImage(0)" style="width:100px; height:100px;" (click)="setKeep(0)"/> 
 <img [src]="getImage(1)" style="width:100px; height:100px;" (click)="setKeep(1)"/> 
 <img [src]="getImage(2)" style="width:100px; height:100px;" (click)="setKeep(2)"/> 
 <img [src]="getImage(3)" style="width:100px; height:100px;" (click)="setKeep(3)"/> 
 <img [src]="getImage(4)" style="width:100px; height:100px;" (click)="setKeep(4)"/> 
 
+<br>
+<br>
 <button id="btn_roll" *ngIf="score.total === -1; else elseBlockGame" (click)="bpressRollDice()">Roll those dice!</button>
+<br>
 <ng-template #elseBlockGame><button id="btn_restart" (click)="resetGame()" >New Game</button></ng-template>
+<br>
+<br>
 <p class="yum_bold">Roll #:{{score.roll}}</p>
-<p>{{statusmsg}}</p>
+
 
 <table>
     <tr>
@@ -176,3 +184,4 @@
         </td>
     </tr>
 </table>
+</div>

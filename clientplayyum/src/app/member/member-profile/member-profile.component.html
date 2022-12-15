@@ -16,12 +16,11 @@
         >
         </mat-select>
     </mat-form-field>
-
     <button (click)="editProfile()">Update Profile</button>
 
 </mat-card>
 <mat-card *ngIf="!hideEditForm">
-    <p>Your Recent Scores</p>
+    <h2>Your Recent Scores</h2>
     <table>
         <tr *ngFor="let score of loadedScores" (click)="openScore(score.id)">
             {{score.startdate}} - {{score.finishdate}} : {{score.total}} points.
@@ -183,7 +182,7 @@
 <mat-card *ngIf="eProfile">
     <mat-card-header layout="row">
         <mat-card-title>
-            update user profile
+            Update User Profile
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
