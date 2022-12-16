@@ -27,7 +27,7 @@ export class AppComponent {
     {
       this.memberService.getOne(idInt).subscribe({
         next: (emp: Member) => {
-          this.loginInfo = `${emp.username} Pts:${emp.points}   `;
+          this.loginInfo = `${emp.username} Points:${emp.points}   `;
         },
         error: (err: Error) => {},
       });
@@ -47,7 +47,7 @@ export class AppComponent {
     {
       this.memberService.getOne(idInt).subscribe({
         next: (emp: Member) => {
-          this.loginInfo = `${emp.username} Pts:${emp.points}   `;
+          this.loginInfo = `${emp.username} Points:${emp.points}   `;
         },
         error: (err: Error) => {},
       });
