@@ -3,7 +3,7 @@
 /* ======== Angular material custom themes ======== */
 /* colour names and values from */
 /* https://material.io/design/color/the-color-system.html#color-theme-creation */
-$my-app-primary: mat-palette($mat-purple, 900);
+$my-app-primary: mat-palette($mat-grey, 900);
 /* main shade, the lighter shade, the darker shade */
 $my-app-accent: mat-palette($mat-green, 300, 200, 400);
 $my-app-warn: mat-palette($mat-red);
