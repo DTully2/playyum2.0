@@ -1,16 +1,17 @@
 
 <mat-toolbar color="primary">
   
-  <span>PlayYum  {{ title }}</span>
+  <span>PlayYum </span>
 
   <span style="flex: 1 1 auto"></span>
-  <a style="color:white" *ngIf="loginInfo !== ''" [routerLink]="['memberprofile']" (click)="setTitle('Game Info')">{{loginInfo}}</a>
-  <img src="../assets/Images/avatar1.png" height="50" width="50"/>
-  <a style="color:white" mat-menu-item [routerLink]="['home']" (click)="setTitle('home')">home</a>
-  <a style="color:white" mat-menu-item [routerLink]="['members']" (click)="setTitle('members')">Sign up</a>
-  <a style="color:white" mat-menu-item [routerLink]="['homepage']" (click)="setTitle('Game Info')">Game Info</a>
-  <a style="color:white" mat-menu-item *ngIf="loginInfo !== ''" [routerLink]="['shop']" (click)="setTitle('Shop')">Shop</a>
-  <a style="color:white" mat-menu-item [routerLink]="['yum']" (click)="setTitle('Yum')">Play Yum!</a>
+  <div class="spacing"><a style="color:white" *ngIf="loginInfo !== ''" [routerLink]="['memberprofile']" (click)="setTitle('Game Info')">{{loginInfo}}</a> </div>
+  <div class="spacing"><img src="../assets/Images/avatar1.png" height="50" width="50"/> </div>
+  <div class="spacing"><a style="color:white"  mat-menu-item [routerLink]="['home']" (click)="setTitle('home')">Home </a> </div>
+  <div class="spacing"><a style="color:white" mat-menu-item [routerLink]="['members']" (click)="setTitle('members')">Sign up</a> </div>
+  <div class="spacing"><a style="color:white" mat-menu-item [routerLink]="['memberprofile']" (click)="setTitle('Member Profle')">Profile</a></div>
+  <div class="spacing"><a style="color:white" mat-menu-item [routerLink]="['homepage']" (click)="setTitle('Game Info')">Game Info</a></div>
+  <div class="spacing"><a style="color:white" mat-menu-item *ngIf="loginInfo !== ''" [routerLink]="['shop']" (click)="setTitle('Shop')">Shop</a> </div>
+  <div class="spacing"><a style="color:white" mat-menu-item [routerLink]="['yum']" (click)="setTitle('Yum')">Play Yum!</a></div>
   <!-- <button mat-button [matMenuTriggerFor]="appMenu" align="end">
     <mat-icon>menu</mat-icon>
   </button> -->

@@ -1,9 +1,11 @@
 <!-- <form (ngSubmit)="memberLogin()"> -->
+  <mat-card>
+    <mat-card-content class="container col-md-10 ">
 <form [formGroup]="memberForm">
   <div class="mb-3">
     <!-- <div id="emailHelp" class="form-text">Sign Up</div> -->
     <br />
-    <div class="mb-3">
+    <div class="form-group">
       <label for="InputEmail1" class="form-label">Email address</label>
       <input
         type="email"
@@ -13,7 +15,7 @@
       />
     </div>
     <br />
-    <div class="mb-3">
+    <div class="form-group">
       <label for="InputUserName" class="form-label">User Name</label>
       <input type="userName" class="form-control" formControlName="userName" />
     </div>
@@ -32,3 +34,5 @@
     Submit
   </button>
 </form>
+</mat-card-content>
+</mat-card>
