@@ -11,6 +11,7 @@
 	<groupId>com.managingsoftware</groupId>
 	<artifactId>playyum</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>playyum</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -65,6 +66,16 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>tomcat9-maven-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+				<server>maven-tomcat-war-deployment-server</server>
+				<url>http://localhost:8080/manager/text</url>
+				<path>/playyum</path>
 				</configuration>
 			</plugin>
 		</plugins>
